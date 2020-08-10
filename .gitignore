@@ -4,3 +4,4 @@ composer.lock
 vendor
 .phpunit.result.cache
 node_modules
+mix-manifest.json
