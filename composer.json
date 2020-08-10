@@ -1,0 +1,32 @@
+{
+  "name": "optimoapps/statamic-rich-snippet",
+  "description": "Rich Snippet",
+  "autoload": {
+    "psr-4": {
+      "OptimoApps\\RichSnippet\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "sathish.thi@gmail.com"
+    }
+  ],
+  "require": {
+    "spatie/schema-org": "^2.14",
+    "statamic/cms": "3.0.*@beta"
+  },
+  "support": {
+    "email": "sathish.thi@gmail.com"
+  },
+  "extra": {
+    "statamic": {
+      "name": "Statamic Rich Snippet",
+      "description": "This will generate Statamic Rich Snippet"
+    },
+    "laravel": {
+      "providers": [
+        "OptimoApps\\RichSnippet\\ServiceProvider"
+      ]
+    }
+  }
+}
