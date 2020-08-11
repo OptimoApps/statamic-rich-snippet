@@ -1,10 +1,10 @@
 <?php
 /*
  * *
- *  *  * Copyright (C) Woosu Automative India Private Limited - All Rights Reserved
+ *  *  * Copyright (C) OptimoApps - All Rights Reserved
  *  *  * Unauthorized copying of this file, via any medium is strictly prohibited
  *  *  * Proprietary and confidential
- *  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>ManiKandan<smanikandanit@gmail.com >
+ *  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>
  *  *
  *
  */
@@ -16,7 +16,11 @@ use OptimoApps\RichSnippet\FieldTypes\ArticleSchemaType;
 use OptimoApps\RichSnippet\FieldTypes\BlogSchemaType;
 use OptimoApps\RichSnippet\FieldTypes\NewsSchemaType;
 use OptimoApps\RichSnippet\Listeners\AddRichSnippetBluePrint;
+use OptimoApps\RichSnippet\Tags\ArticleTags;
+use OptimoApps\RichSnippet\Tags\BlogPostTags;
+use OptimoApps\RichSnippet\Tags\NewsArticleTags;
 use OptimoApps\RichSnippet\Tags\OrganizationTags;
+use OptimoApps\RichSnippet\Tags\SchemaJsonLdTags;
 use OptimoApps\RichSnippet\Tags\WebPageTags;
 use Statamic\Events\EntryBlueprintFound;
 use Statamic\Facades\CP\Nav;
@@ -27,7 +31,10 @@ class ServiceProvider extends AddonServiceProvider
 
     protected $tags = [
         OrganizationTags::class,
-        WebPageTags::class
+        WebPageTags::class,
+        BlogPostTags::class,
+        NewsArticleTags::class,
+        SchemaJsonLdTags::class,
     ];
 
     protected $routes = [
@@ -37,7 +44,8 @@ class ServiceProvider extends AddonServiceProvider
     protected $fieldtypes = [
         ArticleSchemaType::class,
         BlogSchemaType::class,
-        NewsSchemaType::class
+        NewsSchemaType::class,
+        ArticleTags::class
     ];
 
     protected $scripts = [

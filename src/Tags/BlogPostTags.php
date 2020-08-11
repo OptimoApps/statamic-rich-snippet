@@ -12,20 +12,24 @@
 namespace OptimoApps\RichSnippet\Tags;
 
 
-class WebPageTags extends AbstractTags
+/**
+ * Class BlogPostTags
+ * @package OptimoApps\RichSnippet\Tags
+ */
+class BlogPostTags extends AbstractTags
 {
     /**
      * @var string
      */
-    protected static $handle = 'webpage_schema';
+    protected static $handle = 'blogpost_schema';
+
 
     /**
-     * @return string
+     * @return string|null
      */
     public function index(): ?string
     {
-        return $this->getWebPageSchema();
+        return $this->getBlogPostSchema();
     }
-
 
 }

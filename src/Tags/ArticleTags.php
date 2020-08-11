@@ -9,7 +9,18 @@
  *
  */
 
-return [
-    'rich_snippet_enabled' => 'Enabled',
-    'rich_snippet_organization'=> 'Enabled'
-];
+namespace OptimoApps\RichSnippet\Tags;
+
+
+class ArticleTags extends BlogPostTags
+{
+    protected static $handle = 'articles_schema';
+
+    /**
+     * @return string|null
+     */
+    public function index(): ?string
+    {
+        return $this->getArticleSchema();
+    }
+}
