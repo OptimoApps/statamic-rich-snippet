@@ -14,10 +14,8 @@ namespace OptimoApps\RichSnippet\Listeners;
 use OptimoApps\RichSnippet\SchemaTypeEnum;
 use Statamic\Events\EntryBlueprintFound;
 
-
 class AddRichSnippetBluePrint
 {
-
     public function handle(EntryBlueprintFound $event): void
     {
 
@@ -26,7 +24,7 @@ class AddRichSnippetBluePrint
             'type' => 'toggle',
             'display' => 'Is Rich Snippet?',
             'default' => 'true',
-            'instructions' => 'Enable / Disable Rich Snippet'
+            'instructions' => 'Enable / Disable Rich Snippet',
         ], 'Rich Snippet');
 
         //select type
@@ -45,24 +43,22 @@ class AddRichSnippetBluePrint
         /*
          * Article Schema FieldType
          */
-        $event->blueprint->ensureField('article_schema', ['type' => 'article_schema','listable'=>false, 'if' => [
+        $event->blueprint->ensureField('article_schema', ['type' => 'article_schema', 'listable'=>false, 'if' => [
             'schema_type' => 'equals Article',
-        ],], __('Rich Snippet'));
+        ]], __('Rich Snippet'));
 
-        /**
+        /*
          *  BlogPosting Schema FieldType
          */
-        $event->blueprint->ensureField('blog_schema', ['type' => 'blog_schema','listable'=>false, 'if' => [
+        $event->blueprint->ensureField('blog_schema', ['type' => 'blog_schema', 'listable'=>false, 'if' => [
             'schema_type' => 'equals BlogPosting',
-        ],], __('Rich Snippet'));
+        ]], __('Rich Snippet'));
 
-        /**
+        /*
          *  NewsArticle Schema FieldType
          */
-        $event->blueprint->ensureField('news_schema', ['type' => 'news_schema','listable'=>false, 'if' => [
+        $event->blueprint->ensureField('news_schema', ['type' => 'news_schema', 'listable'=>false, 'if' => [
             'schema_type' => 'equals NewsArticle',
-        ],], __('Rich Snippet'));
-
-
+        ]], __('Rich Snippet'));
     }
 }

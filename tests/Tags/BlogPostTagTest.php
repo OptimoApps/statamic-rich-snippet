@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Tests\Tags;
 
-
 use OptimoApps\RichSnippet\Tags\BlogPostTags;
 use OptimoApps\RichSnippet\Tests\TestCase;
 use Statamic\Tags\Context;
@@ -37,9 +36,9 @@ class BlogPostTagTest extends TestCase
                 'dateModified' => '2015-09-20',
                 'alternativeHeadline' => 'This article is also about robots and stuff',
                 'image' => [
-                    "http://example.com/image.jpg"
-                ]
-            ]
+                    'http://example.com/image.jpg',
+                ],
+            ],
         ]));
     }
 
@@ -52,7 +51,6 @@ class BlogPostTagTest extends TestCase
     /** test */
     public function testArticleSchema(): void
     {
-
         $schema = $this->convertJsonLdtoArray($this->tag->index());
         $this->assertEquals($schema->headline, $this->tag->context->get('blog_schema')['headline']);
         $this->assertIsArray($schema->image);

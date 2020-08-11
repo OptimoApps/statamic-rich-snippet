@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use OptimoApps\RichSnippet\Fields as RichSnippetFields;
@@ -21,12 +20,10 @@ use Statamic\Facades\YAML;
 use Statamic\Support\Arr;
 
 /**
- * Class RichSnippetController
- * @package OptimoApps\RichSnippet\Http\Controllers
+ * Class RichSnippetController.
  */
 class RichSnippetController extends Controller
 {
-
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -35,12 +32,13 @@ class RichSnippetController extends Controller
     {
         $blueprint = Blueprint::makeFromSections(RichSnippetFields::getOrganizationFields());
         $fields = $blueprint->fields();
-        $values = collect(YAML::file(__DIR__ . '/../content/rich-snippet.yaml')->parse())
+        $values = collect(YAML::file(__DIR__.'/../content/rich-snippet.yaml')->parse())
             ->merge(YAML::file(base_path('content/rich-snippet.yaml'))->parse())
             ->all();
         $fields = $fields->addValues($values);
 
         $fields = $fields->preProcess();
+
         return view('statamic-rich-snippet::settings', [
             'blueprint' => $blueprint->toPublishArray(),
             'values' => $fields->values(),

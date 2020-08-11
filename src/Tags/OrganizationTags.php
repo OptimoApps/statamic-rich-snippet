@@ -11,14 +11,11 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
-
 /**
- * Class RichSnippetOrganizationTags
- * @package OptimoApps\RichSnippet\Tags
+ * Class RichSnippetOrganizationTags.
  */
 class OrganizationTags extends AbstractTags
 {
-
     /**
      * @var string
      */
@@ -31,5 +28,4 @@ class OrganizationTags extends AbstractTags
     {
         return $this->getOrganizationSchema();
     }
-
 }

@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
-
 class ArticleTags extends BlogPostTags
 {
     protected static $handle = 'articles_schema';

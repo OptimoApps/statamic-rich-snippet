@@ -11,10 +11,8 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
-
 /**
- * Class BlogPostTags
- * @package OptimoApps\RichSnippet\Tags
+ * Class BlogPostTags.
  */
 class BlogPostTags extends AbstractTags
 {
@@ -23,7 +21,6 @@ class BlogPostTags extends AbstractTags
      */
     protected static $handle = 'blogpost_schema';
 
-
     /**
      * @return string|null
      */
@@ -31,5 +28,4 @@ class BlogPostTags extends AbstractTags
     {
         return $this->getBlogPostSchema();
     }
-
 }

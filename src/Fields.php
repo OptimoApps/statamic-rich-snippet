@@ -11,14 +11,12 @@
 
 namespace OptimoApps\RichSnippet;
 
-
 use Statamic\Entries\Entry;
 use Statamic\Facades\Markdown;
 use Statamic\Support\Str;
 
 /**
- * Class Fields
- * @package OptimoApps\RichSnippet
+ * Class Fields.
  */
 class Fields
 {
@@ -44,23 +42,23 @@ class Fields
                     'type' => 'text',
                     'display' => 'Headline',
                     'default' => $entry->data()->get('title'),
-                ]
+                ],
             ],
             [
                 'handle' => 'description',
                 'field' => [
                     'type' => 'textarea',
                     'display' => 'Description',
-                    'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200))
-                ]
+                    'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200)),
+                ],
             ],
             [
                 'handle' => 'url',
                 'field' => [
                     'type' => 'text',
                     'display' => 'URL',
-                    'default' => $entry->absoluteUrl()
-                ]
+                    'default' => $entry->absoluteUrl(),
+                ],
             ],
             [
                 'handle' => 'image',
@@ -70,7 +68,7 @@ class Fields
                     'display' => 'Image',
                     'instructions' => 'Recommended dimensions of 800x800 for optimal clarity, Upload Max 3 images',
 
-                ]
+                ],
             ],
 
             [
@@ -79,8 +77,8 @@ class Fields
                     'type' => 'text',
                     'display' => 'Date Published',
                     'default' => $entry->date()->format('Y-m-d'),
-                    'read_only' => true
-                ]
+                    'read_only' => true,
+                ],
             ],
             [
                 'handle' => 'dateModified',
@@ -88,8 +86,8 @@ class Fields
                     'type' => 'text',
                     'display' => 'Date Modified',
                     'default' => $entry->lastModified()->format('Y-m-d'),
-                    'read_only' => true
-                ]
+                    'read_only' => true,
+                ],
             ],
             [
                 'handle' => 'author',
@@ -97,12 +95,11 @@ class Fields
                     'type' => 'text',
                     'display' => 'Author',
                     'default' => $entry->lastModifiedBy()->name,
-                    'read_only' => true
-                ]
-            ]
+                    'read_only' => true,
+                ],
+            ],
         ];
     }
-
 
     /**
      * @param Entry $entry
@@ -117,52 +114,52 @@ class Fields
                     'type' => 'text',
                     'display' => 'Headline',
                     'default' => $entry->data()->get('title'),
-                ]
+                ],
             ],
             [
                 'handle' => 'alternativeHeadline',
                 'field' => [
                     'type' => 'text',
                     'display' => 'Alternative Headline',
-                ]
+                ],
             ],
             [
                 'handle' => 'award',
                 'field' => [
                     'type' => 'text',
                     'display' => 'Award',
-                ]
+                ],
             ],
             [
                 'handle' => 'genre',
                 'field' => [
                     'type' => 'text',
                     'display' => 'Genre',
-                ]
+                ],
             ],
             [
                 'handle' => 'description',
                 'field' => [
                     'type' => 'textarea',
                     'display' => 'Description',
-                    'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200))
-                ]
+                    'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200)),
+                ],
             ],
             [
                 'handle' => 'articleBody',
                 'field' => [
                     'type' => 'textarea',
                     'display' => 'Article Body',
-                    'default' => strip_tags(Markdown::parse($entry->data()->get('content')))
-                ]
+                    'default' => strip_tags(Markdown::parse($entry->data()->get('content'))),
+                ],
             ],
             [
                 'handle' => 'url',
                 'field' => [
                     'type' => 'text',
                     'display' => 'URL',
-                    'default' => $entry->absoluteUrl()
-                ]
+                    'default' => $entry->absoluteUrl(),
+                ],
             ],
             [
                 'handle' => 'image',
@@ -172,15 +169,15 @@ class Fields
                     'display' => 'Image',
                     'instructions' => 'Recommended dimensions of 800x800 for optimal clarity',
 
-                ]
+                ],
             ],
             [
                 'handle' => 'keywords',
                 'field' => [
                     'type' => 'text',
                     'display' => 'Keywords',
-                    'default' => $entry->slug()
-                ]
+                    'default' => $entry->slug(),
+                ],
             ],
             [
                 'handle' => 'wordCount',
@@ -189,7 +186,7 @@ class Fields
                     'display' => 'WordCount',
                     'default' => str_word_count($entry->data()->get('content')),
                     'validate' => 'numeric',
-                ]
+                ],
             ],
             [
                 'handle' => 'datePublished',
@@ -197,8 +194,8 @@ class Fields
                     'type' => 'text',
                     'display' => 'Date Published',
                     'default' => $entry->date()->format('Y-m-d'),
-                    'read_only' => true
-                ]
+                    'read_only' => true,
+                ],
             ],
             [
                 'handle' => 'dateModified',
@@ -206,8 +203,8 @@ class Fields
                     'type' => 'text',
                     'display' => 'Date Modified',
                     'default' => $entry->lastModified()->format('Y-m-d'),
-                    'read_only' => true
-                ]
+                    'read_only' => true,
+                ],
             ],
             [
                 'handle' => 'author',
@@ -215,12 +212,11 @@ class Fields
                     'type' => 'text',
                     'display' => 'Author',
                     'default' => $entry->lastModifiedBy()->name,
-                    'read_only' => true
-                ]
-            ]
+                    'read_only' => true,
+                ],
+            ],
         ];
     }
-
 
     /**
      * @return array|array[]
@@ -234,7 +230,7 @@ class Fields
                     'section' => [
                         'type' => 'section',
                         'display' => 'Organization',
-                        'instructions' => 'Schema.org “Organization” type'
+                        'instructions' => 'Schema.org “Organization” type',
                     ],
                     'display' => [
                         'type' => 'toggle',
@@ -244,12 +240,12 @@ class Fields
                     'name' => [
                         'type' => 'text',
                         'display' => 'Organization Name',
-                        'instructions' => 'Provide your organizations name'
+                        'instructions' => 'Provide your organizations name',
                     ],
                     'url' => [
                         'type' => 'text',
                         'display' => 'URL',
-                        'validate' => 'active_url'
+                        'validate' => 'active_url',
                     ],
                     'logo' => [
                         'type' => 'assets',
@@ -260,29 +256,27 @@ class Fields
                     'address' => [
                         'type' => 'array',
                         'display' => 'Address',
-                        'keys' =>
-                            [
+                        'keys' => [
                                 'streetAddress' => 'Street Address',
                                 'addressLocality' => 'Address Locality',
                                 'addressRegion' => 'Address Region',
-                                'postalCode' => 'Postal Code'
+                                'postalCode' => 'Postal Code',
                             ],
                         'mode' => 'keyed',
-                        'instructions' => 'Specify Organization Address'
+                        'instructions' => 'Specify Organization Address',
                     ],
                     'contactPoint' => [
                         'type' => 'array',
                         'display' => 'Contact Point',
-                        'keys' =>
-                            [
+                        'keys' => [
                                 'email' => 'Email',
                                 'telephone' => 'Telephone',
                                 'contactType' => 'Contact Type',
                             ],
                         'mode' => 'keyed',
-                        'instructions' => 'Specify Organization Contact Point'
+                        'instructions' => 'Specify Organization Contact Point',
                     ],
-                ]
+                ],
             ],
             'webpage' => [
                 'display' => 'WebPage',
@@ -290,7 +284,7 @@ class Fields
                     'section' => [
                         'type' => 'section',
                         'display' => 'WebPage',
-                        'instructions' => 'Schema.org “WebPage” type'
+                        'instructions' => 'Schema.org “WebPage” type',
                     ],
                     'webpage_display' => [
                         'type' => 'toggle',
@@ -300,16 +294,15 @@ class Fields
                     'webpage_name' => [
                         'type' => 'text',
                         'display' => 'Name',
-                        'instructions' => 'Name of your site'
+                        'instructions' => 'Name of your site',
                     ],
                     'webpage_description' => [
                         'type' => 'text',
                         'display' => 'Description',
-                        'instructions' => 'Maybe you can describe your website here or provide meta description here'
+                        'instructions' => 'Maybe you can describe your website here or provide meta description here',
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
     }
-
 }

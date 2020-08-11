@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\FieldTypes;
 
-
 use Illuminate\Support\Facades\Request;
 use OptimoApps\RichSnippet\Fields as RichSnippetFields;
 use OptimoApps\RichSnippet\SchemaTypeEnum;

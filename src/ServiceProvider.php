@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet;
 
-
 use OptimoApps\RichSnippet\FieldTypes\ArticleSchemaType;
 use OptimoApps\RichSnippet\FieldTypes\BlogSchemaType;
 use OptimoApps\RichSnippet\FieldTypes\NewsSchemaType;
@@ -28,7 +27,6 @@ use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
 {
-
     protected $tags = [
         OrganizationTags::class,
         WebPageTags::class,
@@ -38,24 +36,24 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $routes = [
-        'cp' => __DIR__ . '/../routes/cp.php',
+        'cp' => __DIR__.'/../routes/cp.php',
     ];
 
     protected $fieldtypes = [
         ArticleSchemaType::class,
         BlogSchemaType::class,
         NewsSchemaType::class,
-        ArticleTags::class
+        ArticleTags::class,
     ];
 
     protected $scripts = [
-        __DIR__ . '/../dist/js/rich_snippet-fieldtype.js'
+        __DIR__.'/../dist/js/rich_snippet-fieldtype.js',
     ];
 
     protected $listen = [
         EntryBlueprintFound::class => [
-            AddRichSnippetBluePrint::class
-        ]
+            AddRichSnippetBluePrint::class,
+        ],
     ];
 
     public function boot():void

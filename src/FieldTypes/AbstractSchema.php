@@ -11,8 +11,6 @@
 
 namespace OptimoApps\RichSnippet\FieldTypes;
 
-
-use Illuminate\Http\Request;
 use Statamic\Fields\Fields;
 use Statamic\Fields\Fieldtype;
 
@@ -27,18 +25,16 @@ abstract class AbstractSchema extends Fieldtype
     {
         return [
             'fields' => $this->richSnippetFields(),
-            'meta' => $this->fields()->meta()
+            'meta' => $this->fields()->meta(),
         ];
     }
 
     protected function fields(): Fields
     {
-        return (new Fields($this->richSnippetFields()));
+        return new Fields($this->richSnippetFields());
     }
 
     protected function richSnippetFields(): array
     {
-
     }
-
 }

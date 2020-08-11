@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Tests\Tags;
 
-
 use OptimoApps\RichSnippet\Tags\NewsArticleTags;
 use OptimoApps\RichSnippet\Tests\TestCase;
 use Statamic\Tags\Context;
@@ -30,8 +29,8 @@ class NewsArticleTagTest extends TestCase
                 'datePublished' => '2015-09-20',
                 'dateCreated' => '2015-09-20',
                 'dateModified' => '2015-09-20',
-                'description' => 'This article is also about robots and stuff'
-            ]
+                'description' => 'This article is also about robots and stuff',
+            ],
         ]));
     }
 
