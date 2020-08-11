@@ -4,7 +4,7 @@
  *  *  * Copyright (C) OptimoApps - All Rights Reserved
  *  *  * Unauthorized copying of this file, via any medium is strictly prohibited
  *  *  * Proprietary and confidential
- *  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>
+ *  *  * Written by Sathish Kumar(satz) <info@optimoapps.com>
  *  *
  *
  */
@@ -17,9 +17,17 @@ use Statamic\Extend\Manifest;
 use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
 
+/**
+ * Class TestCase
+ * @package OptimoApps\RichSnippet\Tests
+ */
 class TestCase extends OrchestraTestCase
 {
-    protected function getPackageProviders($app)
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     * @return array
+     */
+    protected function getPackageProviders($app): array
     {
         return [
             StatamicServiceProvider::class,
@@ -27,14 +35,21 @@ class TestCase extends OrchestraTestCase
         ];
     }
 
-    protected function getPackageAliases($app)
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     * @return array
+     */
+    protected function getPackageAliases($app): array
     {
         return [
             'Statamic' => Statamic::class,
         ];
     }
 
-    protected function getEnvironmentSetUp($app)
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     */
+    protected function getEnvironmentSetUp($app): void
     {
         parent::getEnvironmentSetUp($app);
 
@@ -44,5 +59,44 @@ class TestCase extends OrchestraTestCase
                 'namespace' => 'OptimoApps\\RichSnippet\\',
             ],
         ];
+    }
+
+    /**
+     * Resolve the Application Configuration and set the Statamic configuration
+     * @param \Illuminate\Foundation\Application $app
+     */
+    protected function resolveApplicationConfiguration($app): void
+    {
+        parent::resolveApplicationConfiguration($app);
+
+        $configs = [
+            'assets', 'cp', 'forms', 'routes', 'static_caching',
+            'sites', 'stache', 'system', 'users',
+        ];
+
+        foreach ($configs as $config) {
+            $app['config']->set("statamic.$config", require(__DIR__ . "/../vendor/statamic/cms/config/{$config}.php"));
+        }
+
+        // Setting the user repository to the default flat file system
+        $app['config']->set('statamic.users.repository', 'file');
+
+        // Assume the pro edition within tests
+        $app['config']->set('statamic.editions.pro', true);
+
+        Statamic::pushCpRoutes(function () {
+            return require realpath(__DIR__ . '/../routes/cp.php');
+        });
+
+    }
+
+    /**
+     * @param $script
+     * @return array
+     */
+    protected function convertJsonLdtoArray($script): object
+    {
+        preg_match_all('#<script(.*?)>(.*?)</script>#is', $script, $html);
+        return json_decode($html[2][0]);
     }
 }
