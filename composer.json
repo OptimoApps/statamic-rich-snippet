@@ -1,27 +1,53 @@
 {
   "name": "optimoapps/statamic-rich-snippet",
-  "description": "Rich Snippet",
+  "description": "Schema Json-ld Rich Snippet",
+  "keywords": [
+    "statamic",
+    "rich snippet",
+    "json-ld"
+  ],
   "autoload": {
     "psr-4": {
       "OptimoApps\\RichSnippet\\": "src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "OptimoApps\\RichSnippet\\Tests\\": "tests"
+    }
+  },
+  "homepage": "https://optimoapps.com",
+  "license": "proprietary",
+  "type": "statamic-addon",
   "authors": [
     {
-      "name": "sathish.thi@gmail.com"
+      "name": "sathish.thi@gmail.com",
+      "role": "Developer"
     }
   ],
   "require": {
+    "php": "^7.4",
     "spatie/schema-org": "^2.14",
     "statamic/cms": "3.0.*@beta"
   },
+  "require-dev": {
+    "orchestra/testbench": "^5.0",
+    "phpunit/phpunit": "^8.5"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
   "support": {
-    "email": "sathish.thi@gmail.com"
+    "email": "info@optimoapps.com"
   },
   "extra": {
     "statamic": {
-      "name": "Statamic Rich Snippet",
-      "description": "This will generate Statamic Rich Snippet"
+      "name": "Statamic Rich Snippet(Schema.org JSON-LD)",
+      "description": "Rich Snippet Addon for generating Schema.org JSON-LD. Currently, supported type BlogPost, News Article, Article, Organization and Webpage."
     },
     "laravel": {
       "providers": [
