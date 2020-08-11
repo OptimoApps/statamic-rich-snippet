@@ -31,8 +31,8 @@
     "statamic/cms": "3.0.*@beta"
   },
   "require-dev": {
-    "orchestra/testbench": "^5.0",
-    "phpunit/phpunit": "^8.5"
+    "orchestra/testbench": "4.*|5.*",
+    "phpunit/phpunit": "^8.4|^9.0"
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
@@ -54,5 +54,7 @@
         "OptimoApps\\RichSnippet\\ServiceProvider"
       ]
     }
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

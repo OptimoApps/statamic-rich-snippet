@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
-
 class NewsArticleTags extends AbstractTags
 {
     /**

@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
-
 class SchemaJsonLdTags extends AbstractTags
 {
     protected static $handle = 'schema_json';
@@ -23,7 +22,7 @@ class SchemaJsonLdTags extends AbstractTags
             'articles_schema' => $this->getArticleSchema(),
             'blogpost_schema' => $this->getBlogPostSchema(),
             'news_article_schema' => $this->getNewsArticleSchema(),
-            'organization_schema' => $this->getOrganizationSchema()
+            'organization_schema' => $this->getOrganizationSchema(),
         ]);
     }
 }

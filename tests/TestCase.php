@@ -18,8 +18,7 @@ use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
 
 /**
- * Class TestCase
- * @package OptimoApps\RichSnippet\Tests
+ * Class TestCase.
  */
 class TestCase extends OrchestraTestCase
 {
@@ -62,7 +61,7 @@ class TestCase extends OrchestraTestCase
     }
 
     /**
-     * Resolve the Application Configuration and set the Statamic configuration
+     * Resolve the Application Configuration and set the Statamic configuration.
      * @param \Illuminate\Foundation\Application $app
      */
     protected function resolveApplicationConfiguration($app): void
@@ -75,7 +74,7 @@ class TestCase extends OrchestraTestCase
         ];
 
         foreach ($configs as $config) {
-            $app['config']->set("statamic.$config", require(__DIR__ . "/../vendor/statamic/cms/config/{$config}.php"));
+            $app['config']->set("statamic.$config", require(__DIR__."/../vendor/statamic/cms/config/{$config}.php"));
         }
 
         // Setting the user repository to the default flat file system
@@ -85,9 +84,8 @@ class TestCase extends OrchestraTestCase
         $app['config']->set('statamic.editions.pro', true);
 
         Statamic::pushCpRoutes(function () {
-            return require realpath(__DIR__ . '/../routes/cp.php');
+            return require realpath(__DIR__.'/../routes/cp.php');
         });
-
     }
 
     /**
@@ -97,6 +95,7 @@ class TestCase extends OrchestraTestCase
     protected function convertJsonLdtoArray($script): object
     {
         preg_match_all('#<script(.*?)>(.*?)</script>#is', $script, $html);
+
         return json_decode($html[2][0]);
     }
 }

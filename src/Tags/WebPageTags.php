@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
-
 class WebPageTags extends AbstractTags
 {
     /**
@@ -26,6 +25,4 @@ class WebPageTags extends AbstractTags
     {
         return $this->getWebPageSchema();
     }
-
-
 }

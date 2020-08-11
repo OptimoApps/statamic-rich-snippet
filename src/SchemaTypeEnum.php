@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet;
 
-
 final class SchemaTypeEnum
 {
     public const ARTICLE = 'Article';

@@ -11,7 +11,6 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
-
 use Illuminate\Support\Collection;
 use Spatie\SchemaOrg\Graph;
 use Spatie\SchemaOrg\Schema;
@@ -19,12 +18,10 @@ use Statamic\Facades\YAML;
 use Statamic\Tags\Tags;
 
 /**
- * Class AbstractTags
- * @package OptimoApps\RichSnippet\Tags
+ * Class AbstractTags.
  */
 abstract class AbstractTags extends Tags
 {
-
     protected $schema;
 
     /**
@@ -32,12 +29,13 @@ abstract class AbstractTags extends Tags
      */
     protected function getOrganization(): Collection
     {
-        return collect(YAML::file(__DIR__ . '/../content/rich-snippet.yaml')->parse())
+        return collect(YAML::file(__DIR__.'/../content/rich-snippet.yaml')->parse())
             ->merge(YAML::file(base_path('content/rich-snippet.yaml'))->parse())
             ->transform(static function ($item, $key) {
                 if ($key === 'logo') {
-                    return asset('assets/' . $item);
+                    return asset('assets/'.$item);
                 }
+
                 return $item;
             });
     }
@@ -74,6 +72,7 @@ abstract class AbstractTags extends Tags
     {
         if ($this->isSchemaEnabled()) {
             $schema = $this->getSchemaData('blog_schema');
+
             return Schema::blogPosting()
                 ->headline($schema->get('headline'))
                 ->alternativeHeadline($schema->get('alternativeHeadline'))
@@ -96,6 +95,7 @@ abstract class AbstractTags extends Tags
                 ->mainEntityOfPage(Schema::webPage()->identifier($this->getOrganization()->get('url')))
                 ->toScript();
         }
+
         return null;
     }
 
@@ -106,6 +106,7 @@ abstract class AbstractTags extends Tags
     {
         if ($this->isSchemaEnabled()) {
             $schema = $this->getSchemaData('article_schema');
+
             return Schema::article()
                 ->headline($schema->get('headline'))
                 ->alternativeHeadline($schema->get('alternativeHeadline'))
@@ -128,9 +129,9 @@ abstract class AbstractTags extends Tags
                 ->mainEntityOfPage(Schema::webPage()->identifier($this->getOrganization()->get('url')))
                 ->toScript();
         }
+
         return null;
     }
-
 
     /**
      * @return string
@@ -139,6 +140,7 @@ abstract class AbstractTags extends Tags
     {
         if ($this->isSchemaEnabled()) {
             $schema = $this->getSchemaData('news_schema');
+
             return Schema::newsArticle()
                 ->headline($schema->get('headline'))
                 ->image($schema->get('image'))
@@ -153,6 +155,7 @@ abstract class AbstractTags extends Tags
                 ->mainEntityOfPage(Schema::webPage()->identifier($this->getOrganization()->get('url')))
                 ->toScript();
         }
+
         return null;
     }
 
@@ -164,11 +167,13 @@ abstract class AbstractTags extends Tags
         if ($this->getOrganization()->get('display')) {
             $graph = new Graph();
             $graph->profilePage()->publisher($this->getOrganization()->get('webpage_name'));
+
             return Schema::webPage()->name($this->getOrganization()->get('webpage_name'))
                 ->description($this->getOrganization()->get('webpage_description'))
                 ->publisher($graph)
                 ->toScript();
         }
+
         return null;
     }
 
@@ -185,7 +190,7 @@ abstract class AbstractTags extends Tags
                 ->contactPoint($this->getOrganization()->get('contactPoint'))
                 ->toScript();
         }
+
         return null;
     }
-
 }

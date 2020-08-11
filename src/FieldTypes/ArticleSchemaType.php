@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Request;
 use OptimoApps\RichSnippet\Fields as RichSnippetFields;
 use OptimoApps\RichSnippet\SchemaTypeEnum;
 
-
 class ArticleSchemaType extends AbstractSchema
 {
     public static $title = 'Article Schema';

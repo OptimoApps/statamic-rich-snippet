@@ -15,3 +15,16 @@ jobs:
           node-version: '12.x'
       - run: npm install
       - run: npm run prod --if-present
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v2.3.0
+        with:
+          commit_message: Generate and Upload dist
+          branch: ${{ steps.extract_branch.outputs.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
