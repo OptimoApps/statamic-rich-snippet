@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Publish CI
 
 on: [push]
 
@@ -24,7 +24,7 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v2.3.0
         with:
-          commit_message: Generate and Upload dist
+          commit_message: publish dist
           branch: ${{ steps.extract_branch.outputs.branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

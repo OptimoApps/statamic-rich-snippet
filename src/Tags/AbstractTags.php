@@ -15,6 +15,7 @@ use Illuminate\Support\Collection;
 use Spatie\SchemaOrg\Graph;
 use Spatie\SchemaOrg\Schema;
 use Statamic\Facades\YAML;
+use Statamic\Support\Str;
 use Statamic\Tags\Tags;
 
 /**
@@ -29,11 +30,11 @@ abstract class AbstractTags extends Tags
      */
     protected function getOrganization(): Collection
     {
-        return collect(YAML::file(__DIR__.'/../content/rich-snippet.yaml')->parse())
+        return collect(YAML::file(__DIR__ . '/../content/rich-snippet.yaml')->parse())
             ->merge(YAML::file(base_path('content/rich-snippet.yaml'))->parse())
             ->transform(static function ($item, $key) {
                 if ($key === 'logo') {
-                    return asset('assets/'.$item);
+                    return asset('assets/' . $item);
                 }
 
                 return $item;
@@ -76,7 +77,7 @@ abstract class AbstractTags extends Tags
             return Schema::blogPosting()
                 ->headline($schema->get('headline'))
                 ->alternativeHeadline($schema->get('alternativeHeadline'))
-                ->image($schema->get('image'))
+                ->image($this->processImage($schema->get('image')))
                 ->award($schema->get('award'))
                 ->editor($schema->get('editor'))
                 ->genre($schema->get('genre'))
@@ -110,7 +111,7 @@ abstract class AbstractTags extends Tags
             return Schema::article()
                 ->headline($schema->get('headline'))
                 ->alternativeHeadline($schema->get('alternativeHeadline'))
-                ->image($schema->get('image'))
+                ->image($this->processImage($schema->get('image')))
                 ->award($schema->get('award'))
                 ->editor($schema->get('editor'))
                 ->genre($schema->get('genre'))
@@ -143,7 +144,7 @@ abstract class AbstractTags extends Tags
 
             return Schema::newsArticle()
                 ->headline($schema->get('headline'))
-                ->image($schema->get('image'))
+                ->image($this->processImage($schema->get('image')))
                 ->description($schema->get('description'))
                 ->author(Schema::person()->name($schema->get('author')))
                 ->dateCreated($schema->get('datePublished'))
@@ -192,5 +193,18 @@ abstract class AbstractTags extends Tags
         }
 
         return null;
+    }
+
+    private function processImage($images)
+    {
+        if (is_array($images)) {
+            $data = collect();
+            foreach ($images as $image) {
+                if (Str::contains($image, 'assets::')) {
+                    $data->push(asset(Str::replaceFirst('::', '/', $image)));
+                }
+            }
+            return $data->toArray();
+        }
     }
 }
