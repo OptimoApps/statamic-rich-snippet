@@ -30,11 +30,11 @@ abstract class AbstractTags extends Tags
      */
     protected function getOrganization(): Collection
     {
-        return collect(YAML::file(__DIR__ . '/../content/rich-snippet.yaml')->parse())
+        return collect(YAML::file(__DIR__.'/../content/rich-snippet.yaml')->parse())
             ->merge(YAML::file(base_path('content/rich-snippet.yaml'))->parse())
             ->transform(static function ($item, $key) {
                 if ($key === 'logo') {
-                    return asset('assets/' . $item);
+                    return asset('assets/'.$item);
                 }
 
                 return $item;
@@ -204,6 +204,7 @@ abstract class AbstractTags extends Tags
                     $data->push(asset(Str::replaceFirst('::', '/', $image)));
                 }
             }
+
             return $data->toArray();
         }
     }
