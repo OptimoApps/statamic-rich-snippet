@@ -1,4 +1,4 @@
-#Schema.org Json-Ld 
+# Schema.org Json-Ld 
 
 >The below tag we will generate all schema combine.
 `{{schema_json}}`
@@ -6,22 +6,22 @@
 
 For single Schema Type
 
-###Article Schema
+### Article Schema
 
 `{{articles_schema}}`
 
-###Blog Post Schema
+### Blog Post Schema
 
 `{{blogpost_schema}}`
 
-###New Article Schema
+### New Article Schema
 
 `{{news_article_schema}}`
 
-###Organization Schema
+### Organization Schema
 
 `{{organization_schema}}`
 
-###Webpage Schema
+### Webpage Schema
 
 `{{webpage_schema}}`
