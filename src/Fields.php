@@ -12,7 +12,6 @@
 namespace OptimoApps\RichSnippet;
 
 use Statamic\Entries\Entry;
-use Statamic\Facades\Markdown;
 use Statamic\Support\Str;
 
 /**
@@ -20,6 +19,7 @@ use Statamic\Support\Str;
  */
 class Fields
 {
+
     /**
      * @param Entry $entry
      * @return array[]
@@ -33,7 +33,7 @@ class Fields
      * @param Entry $entry
      * @return array[]
      */
-    public static function getNewsArticleFields(Entry $entry): array
+    public static function getNewsArticleFields(Entry $entry = null): array
     {
         return [
             [
@@ -41,7 +41,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.headline'),
-                    'default' => $entry->data()->get('title'),
+                    'default' => is_null($entry) ? '' : $entry->data()->get('title'),
                 ],
             ],
             [
@@ -49,7 +49,7 @@ class Fields
                 'field' => [
                     'type' => 'textarea',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.description'),
-                    'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200)),
+                    'default' => is_null($entry) ? '' : strip_tags(Str::limit(generateHtml($entry->data()->get('content')), 200)),
                 ],
             ],
             [
@@ -57,7 +57,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.url'),
-                    'default' => $entry->absoluteUrl(),
+                    'default' => is_null($entry) ? '' : $entry->absoluteUrl(),
                 ],
             ],
             [
@@ -76,7 +76,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.date_published'),
-                    'default' => $entry->date()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -85,7 +85,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.date_modified'),
-                    'default' => $entry->lastModified()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->lastModified()->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -95,7 +95,7 @@ class Fields
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.author'),
                     'placeholder' => __('statamic-rich-snippet::fieldtypes.news.author_placeholder'),
-                    'default' => is_null($entry->lastModifiedBy()) ? '' : $entry->lastModifiedBy()->name,
+                    'default' => is_null($entry) || is_null($entry->lastModifiedBy()) ? '' : $entry->lastModifiedBy()->name,
                 ],
             ],
         ];
@@ -105,7 +105,7 @@ class Fields
      * @param Entry $entry
      * @return array[]
      */
-    public static function getArticleSchemaFields(Entry $entry): array
+    public static function getArticleSchemaFields(Entry $entry = null): array
     {
         return [
             [
@@ -113,7 +113,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.headline'),
-                    'default' => $entry->data()->get('title'),
+                    'default' => is_null($entry) ? '' : $entry->data()->get('title'),
                 ],
             ],
             [
@@ -146,7 +146,7 @@ class Fields
                     'type' => 'textarea',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.description'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.blog.description_instruct'),
-                    'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200)),
+                    'default' => is_null($entry) ? '' : strip_tags(Str::limit(generateHtml($entry->data()->get('content')), 200)),
                 ],
             ],
             [
@@ -154,8 +154,8 @@ class Fields
                 'field' => [
                     'type' => 'textarea',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.article_body'),
-                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.article_body'),
-                    'default' => strip_tags(Markdown::parse($entry->data()->get('content'))),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.article_body_instruct'),
+                    'default' => is_null($entry) ? '' : strip_tags(generateHtml($entry->data()->get('content'))),
                 ],
             ],
             [
@@ -163,7 +163,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.url'),
-                    'default' => $entry->absoluteUrl(),
+                    'default' => is_null($entry) ? '' : $entry->absoluteUrl(),
                 ],
             ],
             [
@@ -182,7 +182,7 @@ class Fields
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.keywords'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.blog.keywords_instruct'),
-                    'default' => $entry->slug(),
+                    'default' => is_null($entry) ? '' : $entry->slug(),
                 ],
             ],
             [
@@ -191,7 +191,7 @@ class Fields
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.word_count'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.blog.word_count_instruct'),
-                    'default' => str_word_count($entry->data()->get('content')),
+                    'default' => is_null($entry) ? 0 : str_word_count(generateHtml($entry->data()->get('content'))),
                     'validate' => 'numeric',
                 ],
             ],
@@ -200,7 +200,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.date_published'),
-                    'default' => $entry->date()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -209,7 +209,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.date_modified'),
-                    'default' => $entry->lastModified()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->lastModified()->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -219,7 +219,7 @@ class Fields
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.author'),
                     'placeholder' => __('statamic-rich-snippet::fieldtypes.blog.author_placeholder'),
-                    'default' => is_null($entry->lastModifiedBy()) ? '' : $entry->lastModifiedBy()->name,
+                    'default' => is_null($entry) || is_null($entry->lastModifiedBy()) ? '' : $entry->lastModifiedBy()->name,
                 ],
             ],
         ];

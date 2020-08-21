@@ -7,6 +7,9 @@
     "json-ld"
   ],
   "autoload": {
+    "files": [
+      "src/Helper.php"
+    ],
     "psr-4": {
       "OptimoApps\\RichSnippet\\": "src"
     }
