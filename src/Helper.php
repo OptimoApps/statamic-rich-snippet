@@ -25,7 +25,10 @@ if (!function_exists('generateHtml')) {
                 'content' => $content
             ]);
         }
-        return Markdown::parser($content);
+        if (Markdown::hasParser($content)) {
+            return Markdown::parser($content);
+        }
+        return $content;
 
     }
 }

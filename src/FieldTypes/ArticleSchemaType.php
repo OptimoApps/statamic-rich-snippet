@@ -31,6 +31,7 @@ class ArticleSchemaType extends AbstractSchema
     public function process($data)
     {
         if (Request::input('schema_type') === SchemaTypeEnum::ARTICLE) {
+            $data['wordCount'] = $data['wordCount']==0 ? str_word_count($data['articleBody']): $data['wordCount'];
             return $data;
         }
     }
