@@ -121,7 +121,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.alternative_headline'),
-                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.alternative_headline_instruct')
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.alternative_headline_instruct'),
                 ],
             ],
             [
@@ -129,7 +129,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.award'),
-                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.award_instruct')
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.award_instruct'),
                 ],
             ],
             [
@@ -137,7 +137,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.genre'),
-                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.genre_instruct')
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.genre_instruct'),
                 ],
             ],
             [
@@ -172,8 +172,7 @@ class Fields
                     'type' => 'assets',
                     'max_files' => 1,
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.image'),
-                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.image_instruct')
-
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.image_instruct'),
 
                 ],
             ],
