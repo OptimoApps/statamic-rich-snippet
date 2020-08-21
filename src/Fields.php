@@ -19,7 +19,6 @@ use Statamic\Support\Str;
  */
 class Fields
 {
-
     /**
      * @param Entry $entry
      * @return array[]

@@ -19,16 +19,14 @@ if (!function_exists('generateHtml')) {
     function generateHtml($content)
     {
         if (is_array($content)) {
-
             return (new Renderer())->render([
                 'type' => 'doc',
-                'content' => $content
+                'content' => $content,
             ]);
         }
         if (Markdown::hasParser($content)) {
             return Markdown::parser($content);
         }
         return $content;
-
     }
 }
