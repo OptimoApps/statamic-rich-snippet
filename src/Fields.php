@@ -40,7 +40,7 @@ class Fields
                 'handle' => 'headline',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Headline',
+                    'display' => __('statamic-rich-snippet::fieldtypes.news.headline'),
                     'default' => $entry->data()->get('title'),
                 ],
             ],
@@ -48,7 +48,7 @@ class Fields
                 'handle' => 'description',
                 'field' => [
                     'type' => 'textarea',
-                    'display' => 'Description',
+                    'display' => __('statamic-rich-snippet::fieldtypes.news.description'),
                     'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200)),
                 ],
             ],
@@ -56,7 +56,7 @@ class Fields
                 'handle' => 'url',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'URL',
+                    'display' => __('statamic-rich-snippet::fieldtypes.news.url'),
                     'default' => $entry->absoluteUrl(),
                 ],
             ],
@@ -65,8 +65,8 @@ class Fields
                 'field' => [
                     'type' => 'assets',
                     'max_files' => 3,
-                    'display' => 'Image',
-                    'instructions' => 'Recommended dimensions of 800x800 for optimal clarity, Upload Max 3 images',
+                    'display' => __('statamic-rich-snippet::fieldtypes.news.image'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.news.image_instruct'),
 
                 ],
             ],
@@ -75,7 +75,7 @@ class Fields
                 'handle' => 'datePublished',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Date Published',
+                    'display' => __('statamic-rich-snippet::fieldtypes.news.date_published'),
                     'default' => $entry->date()->format('Y-m-d'),
                     'read_only' => true,
                 ],
@@ -84,7 +84,7 @@ class Fields
                 'handle' => 'dateModified',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Date Modified',
+                    'display' => __('statamic-rich-snippet::fieldtypes.news.date_modified'),
                     'default' => $entry->lastModified()->format('Y-m-d'),
                     'read_only' => true,
                 ],
@@ -93,9 +93,9 @@ class Fields
                 'handle' => 'author',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Author',
-                    'default' => $entry->lastModifiedBy()->name,
-                    'read_only' => true,
+                    'display' => __('statamic-rich-snippet::fieldtypes.news.author'),
+                    'placeholder' => __('statamic-rich-snippet::fieldtypes.news.author_placeholder'),
+                    'default' => is_null($entry->lastModifiedBy()) ? '' : $entry->lastModifiedBy()->name,
                 ],
             ],
         ];
@@ -112,7 +112,7 @@ class Fields
                 'handle' => 'headline',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Headline',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.headline'),
                     'default' => $entry->data()->get('title'),
                 ],
             ],
@@ -120,28 +120,32 @@ class Fields
                 'handle' => 'alternativeHeadline',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Alternative Headline',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.alternative_headline'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.alternative_headline_instruct')
                 ],
             ],
             [
                 'handle' => 'award',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Award',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.award'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.award_instruct')
                 ],
             ],
             [
                 'handle' => 'genre',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Genre',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.genre'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.genre_instruct')
                 ],
             ],
             [
                 'handle' => 'description',
                 'field' => [
                     'type' => 'textarea',
-                    'display' => 'Description',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.description'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.description_instruct'),
                     'default' => strip_tags(Str::limit(Markdown::parse($entry->data()->get('content')), 200)),
                 ],
             ],
@@ -149,7 +153,8 @@ class Fields
                 'handle' => 'articleBody',
                 'field' => [
                     'type' => 'textarea',
-                    'display' => 'Article Body',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.article_body'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.article_body'),
                     'default' => strip_tags(Markdown::parse($entry->data()->get('content'))),
                 ],
             ],
@@ -157,7 +162,7 @@ class Fields
                 'handle' => 'url',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'URL',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.url'),
                     'default' => $entry->absoluteUrl(),
                 ],
             ],
@@ -166,8 +171,9 @@ class Fields
                 'field' => [
                     'type' => 'assets',
                     'max_files' => 1,
-                    'display' => 'Image',
-                    'instructions' => 'Recommended dimensions of 800x800 for optimal clarity',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.image'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.image_instruct')
+
 
                 ],
             ],
@@ -175,7 +181,8 @@ class Fields
                 'handle' => 'keywords',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Keywords',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.keywords'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.keywords_instruct'),
                     'default' => $entry->slug(),
                 ],
             ],
@@ -183,7 +190,8 @@ class Fields
                 'handle' => 'wordCount',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'WordCount',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.word_count'),
+                    'instructions' => __('statamic-rich-snippet::fieldtypes.blog.word_count_instruct'),
                     'default' => str_word_count($entry->data()->get('content')),
                     'validate' => 'numeric',
                 ],
@@ -192,7 +200,7 @@ class Fields
                 'handle' => 'datePublished',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Date Published',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.date_published'),
                     'default' => $entry->date()->format('Y-m-d'),
                     'read_only' => true,
                 ],
@@ -201,7 +209,7 @@ class Fields
                 'handle' => 'dateModified',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Date Modified',
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.date_modified'),
                     'default' => $entry->lastModified()->format('Y-m-d'),
                     'read_only' => true,
                 ],
@@ -210,9 +218,9 @@ class Fields
                 'handle' => 'author',
                 'field' => [
                     'type' => 'text',
-                    'display' => 'Author',
-                    'default' => $entry->lastModifiedBy()->name,
-                    'read_only' => true,
+                    'display' => __('statamic-rich-snippet::fieldtypes.blog.author'),
+                    'placeholder' => __('statamic-rich-snippet::fieldtypes.blog.author_placeholder'),
+                    'default' => is_null($entry->lastModifiedBy()) ? '' : $entry->lastModifiedBy()->name,
                 ],
             ],
         ];
@@ -225,81 +233,82 @@ class Fields
     {
         return [
             'organization' => [
-                'display' => 'Organizations',
+                'display' => __('statamic-rich-snippet::fieldtypes.org.header'),
                 'fields' => [
                     'section' => [
                         'type' => 'section',
-                        'display' => 'Organization',
-                        'instructions' => 'Schema.org “Organization” type',
+                        'display' => __('statamic-rich-snippet::fieldtypes.org.section'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.org.section_instruct'),
                     ],
                     'display' => [
                         'type' => 'toggle',
-                        'display' => 'Disable/Enable schema.org Organization type',
+                        'display' => __('statamic-rich-snippet::fieldtypes.org.display'),
                         'default' => true,
                     ],
                     'name' => [
                         'type' => 'text',
-                        'display' => 'Organization Name',
-                        'instructions' => 'Provide your organizations name',
+                        'display' => __('statamic-rich-snippet::fieldtypes.org.name'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.org.name_instruct'),
                     ],
                     'url' => [
                         'type' => 'text',
-                        'display' => 'URL',
+                        'display' => __('statamic-rich-snippet::fieldtypes.org.url'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.org.url_instruct'),
                         'validate' => 'active_url',
                     ],
                     'logo' => [
                         'type' => 'assets',
                         'max_files' => 1,
-                        'display' => 'Logo',
-                        'instructions' => 'Use your logo or any other branded image for the rest of your pages. Use images with a 1.91:1 ratio and minimum recommended dimensions of 1200x630 for optimal clarity across all devices. The image will be resized to 1200 width.',
+                        'display' => __('statamic-rich-snippet::fieldtypes.org.logo'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.org.logo_instruct'),
                     ],
                     'address' => [
                         'type' => 'array',
-                        'display' => 'Address',
+                        'display' => __('statamic-rich-snippet::fieldtypes.org.address'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.org.address_instruct'),
                         'keys' => [
-                                'streetAddress' => 'Street Address',
-                                'addressLocality' => 'Address Locality',
-                                'addressRegion' => 'Address Region',
-                                'postalCode' => 'Postal Code',
-                            ],
+                            'streetAddress' => 'Street Address',
+                            'addressLocality' => 'Address Locality',
+                            'addressRegion' => 'Address Region',
+                            'postalCode' => 'Postal Code',
+                        ],
                         'mode' => 'keyed',
-                        'instructions' => 'Specify Organization Address',
                     ],
                     'contactPoint' => [
                         'type' => 'array',
-                        'display' => 'Contact Point',
+                        'display' => __('statamic-rich-snippet::fieldtypes.org.contact'),
                         'keys' => [
-                                'email' => 'Email',
-                                'telephone' => 'Telephone',
-                                'contactType' => 'Contact Type',
-                            ],
+                            'email' => 'Email',
+                            'telephone' => 'Telephone',
+                            'contactType' => 'Contact Type',
+                        ],
                         'mode' => 'keyed',
-                        'instructions' => 'Specify Organization Contact Point',
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.org.contact_instruct'),
                     ],
                 ],
             ],
             'webpage' => [
-                'display' => 'WebPage',
+                'display' => __('statamic-rich-snippet::fieldtypes.web.header'),
                 'fields' => [
                     'section' => [
                         'type' => 'section',
-                        'display' => 'WebPage',
-                        'instructions' => 'Schema.org “WebPage” type',
+                        'display' => __('statamic-rich-snippet::fieldtypes.web.section'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.web.section_instruct'),
                     ],
                     'webpage_display' => [
                         'type' => 'toggle',
-                        'display' => 'Disable/Enable Schema.org WebPage type',
+                        'display' => __('statamic-rich-snippet::fieldtypes.web.display'),
                         'default' => true,
                     ],
                     'webpage_name' => [
                         'type' => 'text',
-                        'display' => 'Name',
-                        'instructions' => 'Name of your site',
+                        'display' => __('statamic-rich-snippet::fieldtypes.web.name'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.web.name_instruct'),
                     ],
                     'webpage_description' => [
                         'type' => 'text',
-                        'display' => 'Description',
-                        'instructions' => 'Maybe you can describe your website here or provide meta description here',
+                        'display' => __('statamic-rich-snippet::fieldtypes.web.description'),
+                        'instructions' => __('statamic-rich-snippet::fieldtypes.web.description_instruct'),
                     ],
                 ],
             ],

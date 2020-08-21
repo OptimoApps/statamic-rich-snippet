@@ -28,7 +28,7 @@
   "require": {
     "php": "^7.4",
     "spatie/schema-org": "^2.14",
-    "statamic/cms": "3.0.*@beta"
+    "statamic/cms": "^3.0"
   },
   "require-dev": {
     "orchestra/testbench": "4.*|5.*",
