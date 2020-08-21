@@ -32,6 +32,7 @@ class BlogSchemaType extends AbstractSchema
     {
         if (Request::input('schema_type') === SchemaTypeEnum::BLOG_POSTING) {
             $data['wordCount'] = $data['wordCount'] == 0 ? str_word_count($data['articleBody']) : $data['wordCount'];
+
             return $data;
         }
     }

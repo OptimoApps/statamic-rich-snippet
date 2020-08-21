@@ -15,7 +15,7 @@ use Statamic\Facades\Markdown;
 /*
  *  Generate HTML from content
  */
-if (!function_exists('generateHtml')) {
+if (! function_exists('generateHtml')) {
     function generateHtml($content)
     {
         if (is_array($content)) {
@@ -27,6 +27,7 @@ if (!function_exists('generateHtml')) {
         if (Markdown::hasParser($content)) {
             return Markdown::parser($content);
         }
+
         return $content;
     }
 }
