@@ -15,17 +15,16 @@ use Statamic\Facades\Markdown;
 /*
  *  Generate HTML from content
  */
-if (!function_exists('generateHtml')) {
+if (! function_exists('generateHtml')) {
     function generateHtml($content)
     {
         if (is_array($content)) {
-
             return (new Renderer())->render([
                 'type' => 'doc',
-                'content' => $content
+                'content' => $content,
             ]);
         }
-        return Markdown::parser($content);
 
+        return Markdown::parser($content);
     }
 }
