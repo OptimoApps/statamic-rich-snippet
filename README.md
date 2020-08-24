@@ -8,36 +8,40 @@
 
 > Schema.Org Addon for generating Schema.org JSON-LD. Currently, supported type BlogPost, News Article, Article, Organization and Webpage.
 
-#Installation
-```composer require optimoapps/statamic-rich-snippet```
-#How to use
+# Installation
+
+```bash
+composer require optimoapps/statamic-rich-snippet
+```
+
+# How to use
 
 Simply use `{{schema_json}}` ,it will smartly display related type schema if its generated.
  
 
 #### Article Schema
 
-```{{articles_schema}}```
+``` {{articles_schema}} ```
 
 #### Blog Post Schema
 
-```{{blogpost_schema}}```
+``` {{blogpost_schema}} ```
 
 #### New Article Schema
 
-```{{news_article_schema}}```
+``` {{news_article_schema}} ```
 
 #### Organization Schema
 
-```{{organization_schema}}```
+``` {{organization_schema}} ```
 
 #### Webpage Schema
 
-```{{webpage_schema}}```
+``` {{webpage_schema}} ```
 
-#Support & Bug
+# Support & Bug
 
-Find a bug? Have a feature request?  Open an issue on [github](https://github.com/OptimoApps/statamic-rich-snippet/issues) or Mail us [info@optimoapps.com](info@optimoapps.com)
+Find a bug? Have a feature request?  Open an issue on [github](https://github.com/OptimoApps/statamic-rich-snippet/issues) or Mail us info@optimoapps.com
 
 ## Rich Snippet is a Commercial Addon.
 
