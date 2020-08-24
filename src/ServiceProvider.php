@@ -1,10 +1,10 @@
 <?php
 /*
  * *
- *  *  * Copyright (C) OptimoApps - All Rights Reserved
+ *  *  * Copyright (C) optimoapps.com - All Rights Reserved
  *  *  * Unauthorized copying of this file, via any medium is strictly prohibited
  *  *  * Proprietary and confidential
- *  *  * Written by Sathish Kumar(satz) <info@optimoapps.com>
+ *  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>, ManiKandan<smanikandanit@gmail.com >
  *  *
  *
  */
@@ -60,10 +60,10 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
         Nav::extend(static function ($nav) {
-            $nav->tools('Rich Snippet Pro')
+            $nav->tools('Schema.Org')
                 ->route('optimoapps.rich-snippet.index')
                 ->icon('search-utility')
-                ->active('optimoapps');
+                  ->active('optimoapps');
         });
     }
 }

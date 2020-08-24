@@ -1,10 +1,10 @@
 <?php
 /*
  * *
- *  *  * Copyright (C) OptimoApps - All Rights Reserved
+ *  *  * Copyright (C) optimoapps.com - All Rights Reserved
  *  *  * Unauthorized copying of this file, via any medium is strictly prohibited
  *  *  * Proprietary and confidential
- *  *  * Written by Sathish Kumar(satz) <info@optimoapps.com>
+ *  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>, ManiKandan<smanikandanit@gmail.com >
  *  *
  *
  */
@@ -16,6 +16,7 @@ use Statamic\Fields\Fieldtype;
 
 abstract class AbstractSchema extends Fieldtype
 {
+    protected $icon = 'book-open';
     public function preProcess($data)
     {
         return $this->fields()->addValues($data ?? [])->preProcess()->values()->all();

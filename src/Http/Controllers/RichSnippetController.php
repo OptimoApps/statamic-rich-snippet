@@ -1,16 +1,17 @@
 <?php
 /*
  * *
- *  *  * Copyright (C) OptimoApps - All Rights Reserved
+ *  *  * Copyright (C) optimoapps.com - All Rights Reserved
  *  *  * Unauthorized copying of this file, via any medium is strictly prohibited
  *  *  * Proprietary and confidential
- *  *  * Written by Sathish Kumar(satz) <info@optimoapps.com>
+ *  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>, ManiKandan<smanikandanit@gmail.com >
  *  *
  *
  */
 
 namespace OptimoApps\RichSnippet\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use OptimoApps\RichSnippet\Fields as RichSnippetFields;
@@ -26,7 +27,7 @@ class RichSnippetController extends Controller
 {
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -49,7 +50,7 @@ class RichSnippetController extends Controller
     /**
      * @param Request $request
      */
-    public function update(Request $request)
+    public function update(Request $request): void
     {
         $blueprint = Blueprint::makeFromSections(RichSnippetFields::getOrganizationFields());
         $fields = $blueprint->fields();
