@@ -17,6 +17,7 @@ use Statamic\Fields\Fieldtype;
 abstract class AbstractSchema extends Fieldtype
 {
     protected $icon = 'book-open';
+
     public function preProcess($data)
     {
         return $this->fields()->addValues($data ?? [])->preProcess()->values()->all();
