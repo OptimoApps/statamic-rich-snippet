@@ -1,9 +1,9 @@
 <!--
   - /**
-  -  *  * Copyright (C) OptimoApps - All Rights Reserved
+  -  *  * Copyright (C) optimoapps.com - All Rights Reserved
   -  *  * Unauthorized copying of this file, via any medium is strictly prohibited
   -  *  * Proprietary and confidential
-  -  *  * Written by Sathish Kumar(satz) <info@optimoapps.com>
+  -  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>, ManiKandan<smanikandanit@gmail.com >
   -  *
   -  */
   -->
@@ -17,7 +17,6 @@
         :value="value[field.handle]"
         :meta="meta.meta[field.handle]"
         class="form-group"
-        @meta-updated="metaUpdated(field.handle, $event)"
         @focus="$emit('focus')"
         @blur="$emit('blur')"
         @input="updateKey(field.handle, $event)"
