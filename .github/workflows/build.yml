@@ -1,8 +1,6 @@
 name: Publish CI
 
-on:
-  release:
-    types: [published]
+on: [push]
 
 jobs:
   build:
@@ -11,6 +9,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -18,15 +18,12 @@ jobs:
       - run: npm install
       - run: npm run prod --if-present
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v2.3.0
+        uses: stefanzweifel/git-auto-commit-action@v4.4.1
         with:
           commit_message: publish dist
-          branch: ${{ steps.extract_branch.outputs.branch }}
+          branch: ${{ github.head_ref }}
+          push_options: '--force'
+          skip_dirty_check: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
