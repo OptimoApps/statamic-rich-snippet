@@ -18,7 +18,7 @@ class AddRichSnippetBluePrint
 {
     public function handle(EntryBlueprintFound $event): void
     {
-        if (!is_null($event->entry)) {
+        if (! is_null($event->entry)) {
             //to enable rich snippet
             $event->blueprint->ensureField('is_rich_snippet', [
                 'type' => 'toggle',
