@@ -1,29 +1,41 @@
-name: Publish CI
+name: Create Release
 
-on: [push]
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - run: npm install
-      - run: npm run prod --if-present
+      - name: Checkout code
+        uses: actions/checkout@v1
 
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4.4.1
-        with:
-          commit_message: publish dist
-          branch: ${{ github.head_ref }}
-          push_options: '--force'
-          skip_dirty_check: true
+      - name: Install dependencies
+        run: npm install
+
+      - name: Compile assets
+        run: npm run production
+
+      - name: Create zip
+        run: cd resources && tar -czvf dist.tar.gz dist
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+
+      - name: Upload zip to release
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./resources/dist.tar.gz
+          asset_name: dist.tar.gz
+          asset_content_type: application/tar+gz
