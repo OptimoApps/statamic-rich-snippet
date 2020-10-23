@@ -1,10 +1,10 @@
 <?php
 /*
  * *
- *  *  * Copyright (C) OptimoApps - All Rights Reserved
+ *  *  * Copyright (C) optimoapps.com - All Rights Reserved
  *  *  * Unauthorized copying of this file, via any medium is strictly prohibited
  *  *  * Proprietary and confidential
- *  *  * Written by Sathish Kumar(satz) <info@optimoapps.com>
+ *  *  * Written by Sathish Kumar(satz) <sathish.thi@gmail.com>, ManiKandan<smanikandanit@gmail.com >
  *  *
  *
  */
@@ -63,6 +63,7 @@ class Fields
                 'handle' => 'image',
                 'field' => [
                     'type' => 'assets',
+                    'container'=> 'assets',
                     'max_files' => 3,
                     'display' => __('statamic-rich-snippet::fieldtypes.news.image'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.news.image_instruct'),
@@ -169,6 +170,7 @@ class Fields
                 'handle' => 'image',
                 'field' => [
                     'type' => 'assets',
+                    'container'=> 'assets',
                     'max_files' => 1,
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.image'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.blog.image_instruct'),
@@ -256,6 +258,7 @@ class Fields
                     ],
                     'logo' => [
                         'type' => 'assets',
+                        'container'=> 'assets',
                         'max_files' => 1,
                         'display' => __('statamic-rich-snippet::fieldtypes.org.logo'),
                         'instructions' => __('statamic-rich-snippet::fieldtypes.org.logo_instruct'),
